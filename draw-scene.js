@@ -40,23 +40,24 @@ function drawScene(gl, programInfo, buffers, texture, cubeRotation) {
   mat4.rotate(
     modelViewMatrix,
     modelViewMatrix,
-    cubeRotation,
+    Math.PI/4,
     [0, 0, 1]
-  ); // axis to rotate around (Z)
+  );
 
   mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.7, // amount to rotate in radians
-    [0, 1, 0]
-  ); // axis to rotate around (Y)
+    modelViewMatrix,
+    modelViewMatrix,
+    -Math.PI/4,
+    [1, -1, 0]
+  );
 
   mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.3, // amount to rotate in radians
-    [1, 0, 0]
-  ); // axis to rotate around (X)
+    modelViewMatrix,
+    modelViewMatrix,
+    cubeRotation,
+    [0.5, 0.5, 1]
+  );
+
 
   const normalMatrix = mat4.create();
   mat4.invert(normalMatrix, modelViewMatrix);
