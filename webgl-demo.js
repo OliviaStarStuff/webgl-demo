@@ -137,6 +137,10 @@ function main() {
     console.log(mouseState);
   });
 
+  window.addEventListener("load", (e) => {
+    drawScene(gl, programInfo, buffers, texture, rotation);
+});
+
 
   // requestAnimationFrame(render);
 }
