@@ -40,23 +40,24 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
   mat4.rotate(
     modelViewMatrix,
     modelViewMatrix,
-    cubeRotation,
+    Math.PI/4,
     [0, 0, 1]
-  ); // axis to rotate around (Z)
+  );
 
   mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.7, // amount to rotate in radians
-    [0, 1, 0]
-  ); // axis to rotate around (Y)
+    modelViewMatrix,
+    modelViewMatrix,
+    -Math.PI/4,
+    [1, -1, 0]
+  );
 
   mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.3, // amount to rotate in radians
-    [1, 0, 0]
-  ); // axis to rotate around (X)
+    modelViewMatrix,
+    modelViewMatrix,
+    cubeRotation,
+    [0.5, 0.5, 1]
+  );
+
 
   // Tell WebGL how to pull out the positions from the position
   // buffer into the vertexPosition attribute.
