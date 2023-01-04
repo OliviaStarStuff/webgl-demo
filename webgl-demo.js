@@ -5,6 +5,9 @@ import { drawScene } from "./draw-scene.js";
 
 let cubeRotation = 0.0;
 let deltaTime = 0;
+let mouseState = false;
+let mPos = {x: 0, y: 0};
+let rotation = {x: 0, y: 0};
 
 main();
 
@@ -109,15 +112,33 @@ function main() {
     now *= 0.001;
     deltaTime = now - then;
     then = now;
-    // console.log(deltaTime)
 
-    drawScene(gl, programInfo, buffers, texture, cubeRotation);
+    drawScene(gl, programInfo, buffers, texture, 20);
     cubeRotation += deltaTime;
-
-    requestAnimationFrame(render);
   }
+  document.addEventListener("mousedown", (e) => {
+    mouseState = true;
+    mPos.x = e.x;
+    mPos.y = e.y;
+    drawScene(gl, programInfo, buffers, texture, rotation);
+  });
 
-  requestAnimationFrame(render);
+  document.addEventListener("mousemove", (e) => {
+    if (!mouseState) return;
+    rotation.x += (e.x - mPos.x)/window.innerWidth * Math.PI*2;
+    rotation.y += (e.y - mPos.y)/window.innerWidth * Math.PI*2;
+    drawScene(gl, programInfo, buffers, texture, rotation);
+    mPos.x = e.x;
+    mPos.y = e.y;
+  });
+
+  document.addEventListener("mouseup", (e) => {
+    mouseState = false;
+    console.log(mouseState);
+  });
+
+
+  // requestAnimationFrame(render);
 }
 
 //

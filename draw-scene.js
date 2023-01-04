@@ -54,8 +54,15 @@ function drawScene(gl, programInfo, buffers, texture, cubeRotation) {
   mat4.rotate(
     modelViewMatrix,
     modelViewMatrix,
-    cubeRotation,
+    cubeRotation.x,
     [0.5, 0.5, 1]
+  );
+
+  mat4.rotate(
+    modelViewMatrix,
+    modelViewMatrix,
+    cubeRotation.y,
+    [1, -1, 0]
   );
 
 
