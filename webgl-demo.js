@@ -141,6 +141,14 @@ function main() {
     drawScene(gl, programInfo, buffers, texture, rotation);
 });
 
+  document.addEventListener("keypress", (e) => {
+    console.log(e.key)
+    if(e.key == "r") {
+      rotation = {x:0, y:0};
+      drawScene(gl, programInfo, buffers, texture, rotation);
+    }
+});
+
 
   // requestAnimationFrame(render);
 }
