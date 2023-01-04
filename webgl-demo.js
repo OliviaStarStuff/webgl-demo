@@ -3,6 +3,9 @@
 import { initBuffers } from "./init-buffers.js";
 import { drawScene } from "./draw-scene.js";
 
+let squareRotation = 0.0;
+let deltaTime = 0;
+
 main();
 
 //
@@ -67,8 +70,22 @@ function main() {
   };
 
   const buffers = initBuffers(gl);
+  let then = 0;
 
-  drawScene(gl, programInfo, buffers);
+  // Draw the scene repeatedly
+  function render(now) {
+    now *=0.001;
+    deltaTime = now - then;
+    then = now;
+    // console.log(deltaTime)
+
+    drawScene(gl, programInfo, buffers, squareRotation);
+    squareRotation += deltaTime;
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }
 
 //
